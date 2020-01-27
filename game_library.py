@@ -7,22 +7,23 @@
 import pickle
 
 def print_all():
-    print("Running print_all")
+    print("Running print_all()")
     
 def search():
-    print("Running search")
+    print("Running search()")
     
 def add_or_edit():
-    print("Running add_or_edit")
+    print("Running add_or_edit()")
     
 def remove_game():
-    print("Running remove_game")
+    print("Running remove_game()")
     
 def save_changes():
-    print("Running save_changes")
+    print("Running save_changes()")
     
 def quit():
-    print("Running quit")
+    print("Goodbye!")
+    exit()
 
 keep_going = True
 
