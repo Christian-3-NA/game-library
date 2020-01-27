@@ -6,11 +6,26 @@
 
 import pickle
 
+
+
+games = {1:['FPS', 'Halo3', 'Bungee', 'Microsoft', 'Xbox', '2007', '10', 'either', '30.00', 'Yes', '1/15/2008', 'This is is overrated'],
+         2:['3']}
+
 def print_all():
     print("Running print_all()")
     
 def search():
-    print("Running search()")
+    print("""
+    What would you like to search by?
+    ---------------------------------
+    
+    SEARCH BY:
+    1) Title
+    2) Genre
+    3) Developer
+    4) Publisher
+    etc...
+    """)
     
 def add_or_edit():
     print("Running add_or_edit()")
@@ -34,7 +49,7 @@ while keep_going:
     
     MAIN MENU
     1) Print All Games
-    2) Search by Title
+    2) Search by ___
     3) Add/Edit Game
     4) Remove a Game
     5) Save Data 
