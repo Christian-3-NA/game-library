@@ -6,13 +6,16 @@
 
 import pickle
 
-
-
-games = {1:['FPS', 'Halo3', 'Bungee', 'Microsoft', 'Xbox', '2007', '10', 'either', '30.00', 'Yes', '1/15/2008', 'This is is overrated'],
-         2:['3']}
-
 def print_all():
-    print("Running print_all()")
+    #print("Running print_all()")
+    key_list = games.keys()
+    
+    for key in key_list:
+        print()
+        print("Title:", games[key][1], "   Genre:", games[key][0], "   Developer:", games[key][2], "   Publisher:", games[key][3])
+        print("System:", games[key][4], "   Release Date:", games[key][5], "   Rating:", games[key][6], "   Number of Players:", games[key][7])
+        print("Price:", games[key][8], "   Beaten?:", games[key][9], "   Purchase Date:", games[key][10], "   Notes:", games[key][11])
+        print("----------------------")    
     
 def search():
     print("""
@@ -24,7 +27,14 @@ def search():
     2) Genre
     3) Developer
     4) Publisher
-    etc...
+    5) System
+    6) Release Date
+    7) Rating
+    8) Number of Players
+    9) Price
+    10) Beaten?
+    11) Purchase Date
+    
     """)
     
 def add_or_edit():
@@ -34,11 +44,22 @@ def remove_game():
     print("Running remove_game()")
     
 def save_changes():
-    print("Running save_changes()")
+    #print("Running save_changes()")
+    datafile = open("game_library.pickle", "wb")
+    pickle.dump(games, datafile)
+    datafile.close()
+    
+    print("")
+    print("Data Saved!")
     
 def quit():
     print("Goodbye!")
     exit()
+
+games = {}
+picklefile = open("game_library.pickle", "rb")
+games = pickle.load(picklefile)
+picklefile.close()
 
 keep_going = True
 
@@ -49,7 +70,7 @@ while keep_going:
     
     MAIN MENU
     1) Print All Games
-    2) Search by ___
+    2) Search Using Specification
     3) Add/Edit Game
     4) Remove a Game
     5) Save Data 
@@ -76,6 +97,6 @@ while keep_going:
         print("*** THATS NOT A COMMAND! ***")
     
     print("")
-    input("Press Enter to continue.")
+    input("-----Press Enter to continue.-----")
         
 print("Uh-Oh! Looks like both monkeys are smiling!")
