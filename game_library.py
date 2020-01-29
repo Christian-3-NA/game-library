@@ -12,12 +12,28 @@ def print_all():
     
     for key in key_list:
         print()
-        print("Title:", games[key][1], "   Genre:", games[key][0], "   Developer:", games[key][2], "   Publisher:", games[key][3])
-        print("System:", games[key][4], "   Release Date:", games[key][5], "   Rating:", games[key][6], "   Number of Players:", games[key][7])
-        print("Price:", games[key][8], "   Beaten?:", games[key][9], "   Purchase Date:", games[key][10], "   Notes:", games[key][11])
-        print("----------------------")    
+        print("Title:        ", games[key][1], "\nGenre:        ", games[key][0], "\nDeveloper:    ", games[key][2], "\nPublisher:    ", games[key][3],
+              "\nSystem:       ", games[key][4], "\nRelease Date: ", games[key][5], "\nRating:       ", games[key][6], "\n# of Players: ", games[key][7],
+              "\nPrice:        ", games[key][8], "\nBeaten?:      ", games[key][9], "\nPurchase Date:", games[key][10], "\nNotes:        ", games[key][11])
+        print("--------------")    
     
 def search():
+
+    def search_using(question, dict_position):
+        found_one = False
+        search_term = input(question)
+        for key in games.keys():
+            if search_term.lower() in (games[key][dict_position]).lower():
+                found_one = True
+                print()
+                print("Title:        ", games[key][1], "\nGenre:        ", games[key][0], "\nDeveloper:    ", games[key][2], "\nPublisher:    ", games[key][3],
+                      "\nSystem:       ", games[key][4], "\nRelease Date: ", games[key][5], "\nRating:       ", games[key][6], "\n# of Players: ", games[key][7],
+                      "\nPrice:        ", games[key][8], "\nBeaten?:      ", games[key][9], "\nPurchase Date:", games[key][10], "\nNotes:        ", games[key][11])
+                print("--------------")
+        
+        if not found_one:
+            print("\n*** NO MATCHES FOUND!***")
+            
     print("""
     What would you like to search by?
     ---------------------------------
@@ -34,9 +50,46 @@ def search():
     9) Price
     10) Beaten?
     11) Purchase Date
-    
     """)
+    choice = input("Which term would you like to search? ")
     
+    if choice == "1":
+        search_using("  What is the title of the game? ", 1)
+
+    elif choice == "2":
+        search_using("  What is the genre of the game? ", 0)
+         
+    elif choice == "3":
+        search_using("  Who is the developer of the game? ", 2)
+        
+    elif choice == "4":
+        search_using("  Who is the publisher of the game? ", 3)
+                  
+    elif choice == "5":
+        search_using("  What systems can the game play on? ", 4)
+       
+    elif choice == "6":
+        search_using("  What is the release date of the game? ", 5)
+            
+    elif choice == "7":
+        search_using("  What did you rate this game? ", 6)
+        
+    elif choice == "8":
+        search_using("  How many players can play this game? ", 7)
+       
+    elif choice == "9":
+        search_using("  What is the price of the game? ", 8)
+                   
+    elif choice == "10":
+        search_using("  Have you beaten the game? ", 9)
+            
+    elif choice == "11":
+        search_using("  What is the purchase date of the game? ", 10)
+          
+    else:
+        print("\n*** THATS NOT AN OPTION! ***")
+          
+
 def add_or_edit():
     print("Running add_or_edit()")
     
