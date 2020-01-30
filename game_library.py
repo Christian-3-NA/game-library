@@ -91,7 +91,66 @@ def search():
           
 
 def add_or_edit():
-    print("Running add_or_edit()")
+    #print("Running add_or_edit()")
+    add_edit_choice = input("  Would you like to edit an existing entry(1) or add a new one(2)? ")
+    if add_edit_choice == "1":
+        found_one = False
+        valid = False
+        print("    List of titles: ")
+        for key in games.keys():
+            print("     ", games[key][1])
+        search_term = input("  What is the title of the game you wish to edit? ")
+        for key in games.keys():
+            if search_term.lower() == (games[key][1]).lower():
+                found_one = True
+                print("\n--------------")
+                print("Genre:        ", games[key][0], "\nTitle:        ", games[key][1], "\nDeveloper:    ", games[key][2], "\nPublisher:    ", games[key][3],
+                      "\nSystem:       ", games[key][4], "\nRelease Date: ", games[key][5], "\nRating:       ", games[key][6], "\n# of Players: ", games[key][7],
+                      "\nPrice:        ", games[key][8], "\nBeaten?:      ", games[key][9], "\nPurchase Date:", games[key][10], "\nNotes:        ", games[key][11])
+                print("--------------")
+                while not valid:
+                    part_to_edit = input("\nWhich part would you like to edit(1, 2, 3... 11, 12)? ")
+                    new_part = input("\nWhat would you like the new part to be? ")
+                    old_part = games[key][int(part_to_edit)-1]
+                    games[key][int(part_to_edit)-1] = new_part
+                    print("\n--------------")
+                    print("Genre:        ", games[key][0], "\nTitle:        ", games[key][1], "\nDeveloper:    ", games[key][2], "\nPublisher:    ", games[key][3],
+                          "\nSystem:       ", games[key][4], "\nRelease Date: ", games[key][5], "\nRating:       ", games[key][6], "\n# of Players: ", games[key][7],
+                          "\nPrice:        ", games[key][8], "\nBeaten?:      ", games[key][9], "\nPurchase Date:", games[key][10], "\nNotes:        ", games[key][11])
+                    print("--------------\n")
+                    if (input("Type keep/k to confirm this change. ")).lower() not in ("keep", "k"):
+                        games[key][int(part_to_edit)-1] = old_part
+                    if (input("\nIs that everything? ")).lower() in ("yes", "y"):
+                        valid = True
+            
+        if not found_one:
+            print("\n*** THAT GAME DOESN'T EXIST!***")        
+        
+    elif add_edit_choice == "2":
+        new_key = len(games)+1
+        new_entry = []
+        valid = False
+        while not valid:
+            new_entry.append(input("What is the genre? "))
+            new_entry.append(input("What is the title? "))
+            new_entry.append(input("What is the developer? "))
+            new_entry.append(input("What is the Publisher? "))
+            new_entry.append(input("What are the systems? "))
+            new_entry.append(input("What is the release year? "))
+            new_entry.append(input("What is your rating? "))
+            new_entry.append(input("What is the number of players? "))
+            new_entry.append(input("What is the price? "))
+            new_entry.append(input("Have you beaten it? "))
+            new_entry.append(input("What is the purchase date? "))
+            new_entry.append(input("Do you have any notes? "))
+            print(new_entry)
+            answer = input("Is this correct? ")
+            if answer.lower() in ("yes", "y"):
+                valid = True
+            
+            games[new_key] = new_entry
+    else:
+        print("\n*** THATS NOT AN OPTION! ***") 
     
 def remove_game():
     print("Running remove_game()")
