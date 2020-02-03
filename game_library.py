@@ -124,7 +124,7 @@ def add_or_edit():
                         valid = True
             
         if not found_one:
-            print("\n*** THAT GAME DOESN'T EXIST!***")        
+            print("\n***THAT GAME DOESN'T EXIST!***")        
         
     elif add_edit_choice == "2":
         new_key = len(games)+1
@@ -153,7 +153,27 @@ def add_or_edit():
         print("\n*** THATS NOT AN OPTION! ***") 
     
 def remove_game():
-    print("Running remove_game()")
+    #print("Running remove_game()")
+    found_one = False
+    delete_confirm = False
+    print("  List of titles: ")
+    for key in games.keys():
+        print("     ", games[key][1])
+    search_term = input("What is the title of the game you wish to delete? ")
+    for key in games.keys():
+        if search_term.lower() == (games[key][1]).lower():
+            found_one = True
+            print("\n--------------")
+            print("Genre:        ", games[key][0], "\nTitle:        ", games[key][1], "\nDeveloper:    ", games[key][2], "\nPublisher:    ", games[key][3],
+                  "\nSystem:       ", games[key][4], "\nRelease Date: ", games[key][5], "\nRating:       ", games[key][6], "\n# of Players: ", games[key][7],
+                  "\nPrice:        ", games[key][8], "\nBeaten?:      ", games[key][9], "\nPurchase Date:", games[key][10], "\nNotes:        ", games[key][11])
+            print("--------------")
+            if (input("\nIs this the game you would like to delete? ")).lower() in ("yes", "y"):
+                games.pop(key)
+                break
+              
+    if not found_one:
+        print("\n***THAT GAME DOESN'T EXIST!***") 
     
 def save_changes():
     #print("Running save_changes()")
@@ -165,7 +185,14 @@ def save_changes():
     print("Data Saved!")
     
 def quit():
-    print("Goodbye!")
+    if (input("  Would you like to save before quitting? ")).lower() in ("yes", "y"):
+        datafile = open("game_library.pickle", "wb")
+        pickle.dump(games, datafile)
+        datafile.close()
+        
+        print("")
+        print("Data Saved!")        
+    print("\nGoodbye!")
     exit()
 
 games = {}
